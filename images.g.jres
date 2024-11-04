@@ -1,0 +1,12 @@
+{
+    "image1": {
+        "data": "hwQOAA4AAADOzO/+DwAAAN47290r//8A3r3T393S/QDA3d3S3dIPAADf3d3b0g8AAL/d3dvS/wDA3d3S3dL9AN6909/dsg8A3jvb3b3SDwDOzO/+L9v9AAAAAADw+/8AAAAA+//9AAAAAADf3fsAAAAAAPv/DwAA",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Jodim"
+    },
+    "*": {
+        "mimeType": "image/x-mkcd-f4",
+        "dataEncoding": "base64",
+        "namespace": "myImages"
+    }
+}
