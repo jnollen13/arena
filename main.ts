@@ -2,9 +2,9 @@ namespace SpriteKind {
     export const gladiaterlvl2 = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (sprite, location) {
-    tiles.setCurrentTilemap(tilemap`level1`)
     game.splash("get ready")
     if (fights == 1 || fights == 0) {
+        tiles.setCurrentTilemap(tilemap`level1`)
         tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorDarkDiamond)
         mySprite2 = sprites.create(img`
             ......ffff..............
@@ -37,7 +37,8 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (spr
         statusbar2.max = 20
         statusbar2.value = 20
         statusbar2.attachToSprite(mySprite2)
-    } else if (fights == 2) {
+    } else if (fights == 3 || fights == 2) {
+        tiles.setCurrentTilemap(tilemap`level1`)
         tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorDarkDiamond)
         mySprite2 = sprites.create(img`
             ........................
@@ -68,7 +69,41 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (spr
         statusbar2 = statusbars.create(20, 4, StatusBarKind.EnemyHealth)
         statusbar2.attachToSprite(mySprite2)
         statusbar2.max = 29
-        tiles.placeOnTile(mySprite, tiles.getTileLocation(15, 3))
+        tiles.placeOnTile(mySprite2, tiles.getTileLocation(15, 3))
+    } else if (4 == fights || (6 == fights || 5 == fights)) {
+        tiles.setCurrentTilemap(tilemap`level0`)
+        mySprite2 = sprites.create(img`
+            ..............ccccccccc........
+            ............cc555555555cc......
+            ...........c5555555555555c.....
+            ..........c55555555555555dc....
+            .........c555555555555b5bdc....
+            .........555bc1555555555bdcccc.
+            ........c555ccc55555555bbdccddc
+            ........c555bcb5555555ccddcdddc
+            .......c555555555551ccccddbdddc
+            .......c555555b555c1cccbddbbdbc
+            .......c5555555bbc33333ddddbcc.
+            .......c555555555bc333555ddbc..
+            .......c5555555555555555555c...
+            .......cd555555555555cccc555c..
+            .......cd55555555555c555c555c..
+            .......cdd555555555b5555b555c..
+            .......cddd55555ddbb555bb555c..
+            .......cdddd55555555555b5555c..
+            .......cddddd5555555ddb5555dc..
+            c......cdddddd555555555555dcc..
+            cc...ccddddddd555555555555dc...
+            cdccccdddddd555555d55555ddcc...
+            cdddddddddbd5555555ddddddccccc.
+            ccdddddddbb55555555bddddccbddc.
+            .ccddddddbd55555555bdddccdddc..
+            ..cccddddbd5555555cddcccddbc...
+            ....ccccccd555555bcccc.cccc....
+            .........cc555555bc............
+            .........cc55555555c...........
+            ..........cccccccccc...........
+            `, SpriteKind.gladiaterlvl2)
     }
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLadder, function (sprite, location) {
@@ -90,7 +125,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Healertile`, function (sprite
     if (controller.A.isPressed()) {
         game.splash("hp restored")
         statusbar.value = 100
-        mySprite.y += 60
+        tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorLight5)
     }
 })
 statusbars.onZero(StatusBarKind.EnemyHealth, function (status) {
