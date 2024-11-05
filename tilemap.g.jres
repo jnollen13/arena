@@ -28,28 +28,11 @@
         "tilemapTile": true,
         "displayName": "myTile3"
     },
-    "level2": {
-        "id": "level2",
-        "mimeType": "application/mkcd-tilemap",
-        "data": "MTAxMDAwMTAwMDAyMDEwMTAxMDMwODBiMGIwNDAyMDEwMTAxMDEwMTAzMDgwZTBlMGUwNDA4MGIwYjA0MDgwZTBlMGUwZTBlMDQwODBlMGUwZTA0MDgwYjBiMDQwODBlMGUwZTBlMGUwNDA4MGUwZTBlMDQwODBiMGIwNDA4MGUwZTBlMGUwZTA0MDgwZTBlMGUwNDA4MGIwYjA0MDgwZTBlMGUwZTBlMDQwODBlMGUwZTA0MDcwYzBjMDUwODBlMGUwZTBlMGUwNDA4MGUwZTBlMDkwMTBkMGQwMTBhMGUwZTBlMGUwZTA0MDgwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMDQwODBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwNDA4MGUwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwZTA0MDgwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMDQwODBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwNDA4MGUwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwZTA0MDgwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMDQwODBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwNDA3MDYwNjA2MDYwNjA2MDYwNjA2MDYwNjA2MDYwNjA1MjIyMjIyMDAyMjIyMjIyMjAyMDAyMjAwMjIwMDAwMjAwMjAwMjIwMDIyMDAwMDIwMDIwMDIyMDAyMjAwMDAyMDAyMDAyMjAwMjIwMDAwMjAwMjAwMjIwMDIyMDAwMDIwMDIwMDIyMDAyMjAwMDAyMDAyMDAwMDAwMDAwMDAwMjAwMjAwMDAwMDAwMDAwMDIwMDIwMDAwMDAwMDAwMDAyMDAyMDAwMDAwMDAwMDAwMjAwMjAwMDAwMDAwMDAwMDIwMDIwMDAwMDAwMDAwMDAyMDAyMDAwMDAwMDAwMDAwMjAwMjAwMDAwMDAwMDAwMDIwMjIyMjIyMjIyMjIyMjIyMg==",
-        "tileset": [
-            "myTiles.transparency16",
-            "sprites.dungeon.greenOuterNorth0",
-            "sprites.dungeon.greenOuterNorthWest",
-            "sprites.dungeon.greenOuterNorthEast",
-            "sprites.dungeon.greenOuterEast0",
-            "sprites.dungeon.greenOuterSouthWest",
-            "sprites.dungeon.greenOuterSouth1",
-            "sprites.dungeon.greenOuterSouthEast",
-            "sprites.dungeon.greenOuterWest0",
-            "sprites.dungeon.greenInnerSouthWest",
-            "sprites.dungeon.greenInnerSouthEast",
-            "sprites.dungeon.stairNorth",
-            "sprites.dungeon.doorOpenSouth",
-            "sprites.dungeon.doorOpenNorth",
-            "sprites.dungeon.floorLight0"
-        ],
-        "displayName": "barracks"
+    "tile3": {
+        "data": "hwQQABAAAABVVVVVVVVVVSUiVSIiVSJSJVIlQiRSJVIlVSJSRCJVUlUlIlUkIlJVVSIiVSIiIlUlQiIlVVUiUiVEJCUiVUVSJVRVIlJCRFIlIlVVUiIkUlUiIiJVIiJVVSUiQlUiUlUlVSJEJSJVUiVSJUIkUiVSJSJVIiJVIlJVVVVVVVVVVQ==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "Healertile"
     },
     "level3": {
         "id": "level3",
@@ -132,6 +115,31 @@
             "myTiles.transparency16"
         ],
         "displayName": "level8"
+    },
+    "level2": {
+        "id": "level2",
+        "mimeType": "application/mkcd-tilemap",
+        "data": "MTAxMDAwMTAwMDAyMDEwMTAxMDMwODBiMGIwNDAyMDEwMTAxMDEwMTAzMDgwZjBmMGYwNDA4MGIwYjA0MDgwZTBlMGUwZTBlMDQwODBmMGYwZjA0MDgwYjBiMDQwODBlMGUwZTBlMGUwNDA4MGYwZjBmMDQwODBiMGIwNDA4MGUwZTBlMGUwZTA0MDgxMDEwMTAwNDA4MGIwYjA0MDgwZTBlMGUwZTBlMDQwODBlMGUwZTA0MDcwYzBjMDUwODBlMGUwZTBlMGUwNDA4MGUwZTBlMDkwMTBkMGQwMTBhMGUwZTBlMGUwZTA0MDgwZTBlMGUwZTBlMTAxMDBlMGUwZTBlMGUwZTBlMDQwODBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwNDA4MGUwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwZTA0MDgwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMDQwODBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwNDA4MGUwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwZTA0MDgwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMDQwODBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwZTBlMGUwNDA3MDYwNjA2MDYwNjA2MDYwNjA2MDYwNjA2MDYwNjA1MjIyMjIyMDAyMjIyMjIyMjAyMDAyMjAwMjIwMDAwMjAwMjAwMjIwMDIyMDAwMDIwMDIwMDIyMDAyMjAwMDAyMDAyMDAyMjAwMjIwMDAwMjAwMjAwMjIwMDIyMDAwMDIwMDIwMDIyMDAyMjAwMDAyMDAyMDAwMDAwMDAwMDAwMjAwMjAwMDAwMDAwMDAwMDIwMDIwMDAwMDAwMDAwMDAyMDAyMDAwMDAwMDAwMDAwMjAwMjAwMDAwMDAwMDAwMDIwMDIwMDAwMDAwMDAwMDAyMDAyMDAwMDAwMDAwMDAwMjAwMjAwMDAwMDAwMDAwMDIwMjIyMjIyMjIyMjIyMjIyMg==",
+        "tileset": [
+            "myTiles.transparency16",
+            "sprites.dungeon.greenOuterNorth0",
+            "sprites.dungeon.greenOuterNorthWest",
+            "sprites.dungeon.greenOuterNorthEast",
+            "sprites.dungeon.greenOuterEast0",
+            "sprites.dungeon.greenOuterSouthWest",
+            "sprites.dungeon.greenOuterSouth1",
+            "sprites.dungeon.greenOuterSouthEast",
+            "sprites.dungeon.greenOuterWest0",
+            "sprites.dungeon.greenInnerSouthWest",
+            "sprites.dungeon.greenInnerSouthEast",
+            "sprites.dungeon.stairNorth",
+            "sprites.dungeon.doorOpenSouth",
+            "sprites.dungeon.doorOpenNorth",
+            "sprites.dungeon.floorLight0",
+            "myTiles.tile3",
+            "sprites.dungeon.floorLight1"
+        ],
+        "displayName": "barracks"
     },
     "*": {
         "mimeType": "image/x-mkcd-f4",

@@ -34,6 +34,8 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (spr
         statusbar2.max = 20
         statusbar2.value = 20
         statusbar2.attachToSprite(mySprite2)
+    } else if (fights == 1) {
+    	
     }
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLadder, function (sprite, location) {
@@ -51,21 +53,32 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLadder, function (sp
     tiles.setWallAt(tiles.getTileLocation(17, 32), false)
     mySprite2.follow(mySprite, 82)
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`Healertile`, function (sprite, location) {
+    if (controller.A.isPressed()) {
+        game.splash("hp restored")
+        statusbar.value = 100
+        mySprite.y += 60
+    }
+})
 statusbars.onZero(StatusBarKind.EnemyHealth, function (status) {
     sprites.destroy(mySprite2, effects.spray, 500)
     tiles.setCurrentTilemap(tilemap`barracks`)
     tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorLight0)
+    fights += 1
 })
 statusbars.onZero(StatusBarKind.Health, function (status) {
     info.changeLifeBy(-1)
     statusbar.value = 100
     sprites.destroy(mySprite2)
     tiles.setCurrentTilemap(tilemap`barracks`)
-    tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorMixed)
+    tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorLight0)
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     pause(100)
     statusbar.value += -1
+})
+info.onLifeZero(function () {
+    game.gameOver(false)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (controller.B.isPressed()) {
