@@ -109,7 +109,12 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (spr
         statusbar2 = statusbars.create(20, 4, StatusBarKind.EnemyHealth)
         statusbar2.attachToSprite(mySprite2)
         statusbar2.max = 42
+        mySprite2.follow(mySprite)
     }
+})
+sprites.onOverlap(SpriteKind.gladiaterlvl2, SpriteKind.Player, function (sprite, otherSprite) {
+    pause(100)
+    statusbar.value += -2
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLadder, function (sprite, location) {
     tiles.setTileAt(tiles.getTileLocation(16, 31), sprites.dungeon.floorMixed)
@@ -135,9 +140,11 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Healertile`, function (sprite
 })
 statusbars.onZero(StatusBarKind.EnemyHealth, function (status) {
     sprites.destroy(mySprite2, effects.spray, 500)
-    tiles.setCurrentTilemap(tilemap`barracks`)
-    tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorLight0)
+    pause(500)
     fights += 1
+    tiles.setTileAt(tiles.getTileLocation(3, 15), sprites.dungeon.stairLarge)
+    tiles.setTileAt(tiles.getTileLocation(4, 15), sprites.dungeon.stairLarge)
+    tiles.setWallAt(tiles.getTileLocation(3, 13), false)
 })
 statusbars.onZero(StatusBarKind.Health, function (status) {
     info.changeLifeBy(-1)
@@ -145,6 +152,11 @@ statusbars.onZero(StatusBarKind.Health, function (status) {
     sprites.destroy(mySprite2)
     tiles.setCurrentTilemap(tilemap`barracks`)
     tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorLight0)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.gladiaterlvl2, function (sprite, otherSprite) {
+    if (controller.B.isPressed()) {
+        statusbar2.value += -2
+    }
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     pause(100)
@@ -155,6 +167,10 @@ controller.combos.attachCombo("BB+A", function () {
 })
 info.onLifeZero(function () {
     game.gameOver(false)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLarge, function (sprite, location) {
+    tiles.setCurrentTilemap(tilemap`barracks`)
+    tiles.placeOnTile(mySprite, tiles.getTileLocation(13, 7))
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (controller.B.isPressed()) {
