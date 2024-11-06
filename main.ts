@@ -104,6 +104,11 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (spr
             .........cc55555555c...........
             ..........cccccccccc...........
             `, SpriteKind.gladiaterlvl2)
+        tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorDarkDiamond)
+        tiles.placeOnRandomTile(mySprite2, sprites.dungeon.floorDark0)
+        statusbar2 = statusbars.create(20, 4, StatusBarKind.EnemyHealth)
+        statusbar2.attachToSprite(mySprite2)
+        statusbar2.max = 42
     }
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLadder, function (sprite, location) {
@@ -144,6 +149,9 @@ statusbars.onZero(StatusBarKind.Health, function (status) {
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     pause(100)
     statusbar.value += -1
+})
+controller.combos.attachCombo("BB+A", function () {
+	
 })
 info.onLifeZero(function () {
     game.gameOver(false)
