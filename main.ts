@@ -216,7 +216,7 @@ atatDsy = sprites.create(assets.image`attack`, SpriteKind.attack)
 statusbar.attachToSprite(mySprite)
 tiles.placeOnTile(atatDsy, mySprite.tilemapLocation())
 info.setLife(3)
-atatDsy.setScale(0.66, ScaleAnchor.Middle)
+atatDsy.setScale(1, ScaleAnchor.Middle)
 atatDsy.follow(mySprite, 1000)
 atatDsy.setFlag(SpriteFlag.Invisible, true)
 atatDsy.setFlag(SpriteFlag.Ghost, true)
@@ -225,6 +225,8 @@ game.onUpdate(function () {
     if (7 == fights) {
         tiles.setCurrentTilemap(tilemap`level4`)
         scene.setBackgroundImage(assets.image`end`)
+        game.splash("Game beat in", game.runtime())
+        game.splash("Miliseconds")
         info.setScore(100)
     }
 })
