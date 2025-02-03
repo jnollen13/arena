@@ -1,14 +1,21 @@
 namespace SpriteKind {
     export const gladiaterlvl2 = SpriteKind.create()
     export const attack = SpriteKind.create()
+    export const Final = SpriteKind.create()
 }
 namespace StatusBarKind {
     export const finalmapEH = StatusBarKind.create()
 }
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Final, function (sprite, otherSprite) {
+    if (controller.B.isPressed()) {
+        statusbar2.value += -1
+    }
+})
 statusbars.onZero(StatusBarKind.finalmapEH, function (status) {
     sprites.destroy(mySprite2, effects.spray, 500)
     pause(500)
     tiles.setTileAt(tiles.getTileLocation(12, 3), sprites.dungeon.stairLarge)
+    fights += 1
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (sprite, location) {
     game.splash("get ready")
@@ -29,14 +36,23 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (spr
         statusbar2.attachToSprite(mySprite2)
         statusbar2.max = 44
         tiles.placeOnTile(mySprite2, tiles.getTileLocation(15, 3))
-    } else if (4 == fights || (6 == fights || 5 == fights)) {
+    } else if (4 == fights || 5 == fights) {
         tiles.setCurrentTilemap(tilemap`level0`)
         mySprite2 = sprites.create(assets.image`3`, SpriteKind.gladiaterlvl2)
         tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorDarkDiamond)
         tiles.placeOnRandomTile(mySprite2, sprites.dungeon.floorDark0)
         statusbar2 = statusbars.create(20, 4, StatusBarKind.finalmapEH)
         statusbar2.attachToSprite(mySprite2)
-        statusbar2.max = 55
+        statusbar2.max = 50
+        statusbar2.setStatusBarFlag(StatusBarFlag.SmoothTransition, true)
+    } else if (6 == fights) {
+        tiles.setCurrentTilemap(tilemap`level0`)
+        mySprite2 = sprites.create(assets.image`4`, SpriteKind.Final)
+        tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorDarkDiamond)
+        tiles.placeOnRandomTile(mySprite2, sprites.dungeon.floorDark0)
+        statusbar2 = statusbars.create(20, 4, StatusBarKind.finalmapEH)
+        statusbar2.attachToSprite(mySprite2)
+        statusbar2.max = 100
         statusbar2.setStatusBarFlag(StatusBarFlag.SmoothTransition, true)
     }
 })
@@ -59,16 +75,20 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLadder, function (sp
     tiles.setWallAt(tiles.getTileLocation(17, 32), false)
     mySprite2.follow(mySprite, 82)
 })
+sprites.onOverlap(SpriteKind.Final, SpriteKind.Player, function (sprite, otherSprite) {
+    statusbar.value += -3
+    pause(randint(99, 211))
+})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Healertile`, function (sprite, location) {
     if (controller.A.isPressed()) {
         game.splash("hp restored")
-        statusbar.value = 100
+        statusbar.value = 89
         tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorLight5)
         pause(100)
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile4squid`, function (sprite, location) {
-    mySprite2.follow(mySprite)
+    mySprite2.follow(mySprite, randint(75, 100))
     tiles.setWallAt(tiles.getTileLocation(7, 11), true)
     tiles.setWallAt(tiles.getTileLocation(8, 4), true)
     scene.cameraShake(4, 500)
@@ -76,8 +96,13 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile4squid`, function (spri
     tiles.setTileAt(tiles.getTileLocation(7, 11), assets.tile`myTile4`)
     tiles.setTileAt(tiles.getTileLocation(7, 10), sprites.dungeon.floorLight1)
     tiles.setTileAt(tiles.getTileLocation(8, 4), assets.tile`myTile5`)
-    mySprite.sayText("Meow", 100, false)
+    mySprite.sayText("Meow", 100, true)
     tiles.placeOnTile(mySprite2, tiles.getTileLocation(8, 5))
+})
+sprites.onOverlap(SpriteKind.attack, SpriteKind.gladiaterlvl2, function (sprite, otherSprite) {
+    atatDsy.setFlag(SpriteFlag.Ghost, true)
+    statusbar2.value += -2
+    atatDsy.setFlag(SpriteFlag.Invisible, true)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -128,15 +153,20 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+sprites.onOverlap(SpriteKind.attack, SpriteKind.Final, function (sprite, otherSprite) {
+    atatDsy.setFlag(SpriteFlag.Ghost, true)
+    statusbar2.value += -1
+    atatDsy.setFlag(SpriteFlag.Invisible, true)
+})
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     pause(100)
     statusbar.value += -1
 })
 controller.combos.attachCombo("BB+A", function () {
-    tiles.placeOnTile(wow, mySprite.tilemapLocation())
-    wow.setFlag(SpriteFlag.Invisible, false)
-    wow.setFlag(SpriteFlag.Ghost, false)
-    wow.setFlag(SpriteFlag.GhostThroughWalls, true)
+    tiles.placeOnTile(atatDsy, mySprite.tilemapLocation())
+    atatDsy.setFlag(SpriteFlag.Invisible, false)
+    atatDsy.setFlag(SpriteFlag.Ghost, false)
+    atatDsy.setFlag(SpriteFlag.GhostThroughWalls, true)
 })
 info.onLifeZero(function () {
     music.setVolume(255)
@@ -151,21 +181,29 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLarge, function (spr
     tiles.setCurrentTilemap(tilemap`barracks`)
     tiles.placeOnTile(mySprite, tiles.getTileLocation(13, 7))
 })
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.attack, function (sprite, otherSprite) {
+    atatDsy.setFlag(SpriteFlag.Ghost, true)
+    statusbar2.value += -2
+    atatDsy.setFlag(SpriteFlag.Invisible, true)
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (controller.B.isPressed()) {
         statusbar2.value += -1
         pause(21)
     }
 })
-let statusbar2: StatusBarSprite = null
 let mySprite2: Sprite = null
-let wow: Sprite = null
+let statusbar2: StatusBarSprite = null
+let atatDsy: Sprite = null
 let statusbar: StatusBarSprite = null
 let fights = 0
 let mySprite: Sprite = null
+scene.setBackgroundImage(assets.image`holey hole`)
 game.splash("welcome to the arena")
-game.splash("in this game ", "you are trying to advance and complete all 8 levels")
+pause(150)
+game.splash("in this game ", "you are trying to advance and complete all 7 levels")
 game.splash("and become the champion of the arena!")
+pause(1000)
 tiles.setCurrentTilemap(tilemap`barracks`)
 mySprite = sprites.create(assets.image`JodimL`, SpriteKind.Player)
 controller.moveSprite(mySprite, 102, 102)
@@ -173,12 +211,20 @@ tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorLight0)
 scene.cameraFollowSprite(mySprite)
 fights = 0
 statusbar = statusbars.create(30, 3, StatusBarKind.Health)
-statusbar.max = 100
-wow = sprites.create(assets.image`attack`, SpriteKind.attack)
+statusbar.max = 89
+atatDsy = sprites.create(assets.image`attack`, SpriteKind.attack)
 statusbar.attachToSprite(mySprite)
-tiles.placeOnTile(wow, mySprite.tilemapLocation())
+tiles.placeOnTile(atatDsy, mySprite.tilemapLocation())
 info.setLife(3)
-wow.setScale(0.78, ScaleAnchor.Middle)
-wow.follow(mySprite, 1000)
-wow.setFlag(SpriteFlag.Invisible, true)
-wow.setFlag(SpriteFlag.Ghost, true)
+atatDsy.setScale(0.66, ScaleAnchor.Middle)
+atatDsy.follow(mySprite, 1000)
+atatDsy.setFlag(SpriteFlag.Invisible, true)
+atatDsy.setFlag(SpriteFlag.Ghost, true)
+statusbar.setStatusBarFlag(StatusBarFlag.SmoothTransition, true)
+game.onUpdate(function () {
+    if (7 == fights) {
+        tiles.setCurrentTilemap(tilemap`level4`)
+        scene.setBackgroundImage(assets.image`end`)
+        info.setScore(100)
+    }
+})
