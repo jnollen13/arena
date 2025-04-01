@@ -1,7 +1,7 @@
  
 
 
-> Open this page at [https://jnollen13.github.io/arena/](https://jnollen13.github.io/arena/)
+> Open this page at https://arcade.makecode.com/S95988-15978-63312-05261
 
 ## Use as Extension
 
